@@ -3,299 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Hub | AI工具推荐与行业解读</title>
-    <meta name="description" content="精选AI工具推荐，深度行业解读，帮你把握AI时代脉搏">
+    <title>AI Hub | AI工具推荐与行业快讯</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <span class="logo">AI</span>
-                <span class="brand-name">Hub</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#tools">工具推荐</a></li>
-                <li><a href="#news">行业解读</a></li>
-                <li><a href="#about">关于</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1 class="hero-title">
-                把握AI时代脉搏
-                <span class="gradient-text">从这里开始</span>
-            </h1>
-            <p class="hero-subtitle">
-                精选AI工具推荐 · 深度行业解读 · 每周更新
-            </p>
-            <div class="hero-cta">
-                <a href="#tools" class="btn btn-primary">浏览工具</a>
-                <a href="#news" class="btn btn-secondary">阅读解读</a>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">AI</span>
+                <span class="logo-text">Hub</span>
             </div>
         </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">50+</span>
-                    <span class="stat-label">精选工具</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">每周</span>
-                    <span class="stat-label">行业解读</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">亲测推荐</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools Section -->
-    <section id="tools" class="tools">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">工具推荐</h2>
-                <p class="section-subtitle">精选实用AI工具，提升你的工作效率</p>
+        
+        <nav class="sidebar-nav">
+            <div class="nav-section">
+                <div class="nav-section-title">内容</div>
+                <a href="#" class="nav-item active" data-page="tools">
+                    <span class="nav-icon">🛠️</span>
+                    <span>AI 工具</span>
+                </a>
+                <a href="#" class="nav-item" data-page="news">
+                    <span class="nav-icon">📰</span>
+                    <span>AI 快讯</span>
+                </a>
             </div>
             
-            <div class="tools-grid">
-                <!-- Tool Card 1 -->
-                <div class="tool-card">
-                    <div class="tool-badge">热门</div>
-                    <div class="tool-icon">🤖</div>
-                    <h3 class="tool-name">Kimi Claw</h3>
-                    <p class="tool-desc">月之暗面最新AI助手，长文本处理能力出色，适合文档分析和总结</p>
-                    <div class="tool-tags">
-                        <span class="tag">文本处理</span>
-                        <span class="tag">国产</span>
-                    </div>
-                    <div class="tool-footer">
-                        <a href="https://kimi.moonshot.cn" target="_blank" class="tool-link">访问官网 →</a>
-                    </div>
-                </div>
-
-                <!-- Tool Card 2 -->
-                <div class="tool-card">
-                    <div class="tool-icon">🎨</div>
-                    <h3 class="tool-name">Claude</h3>
-                    <p class="tool-desc">Anthropic出品，对话自然，代码能力强，收购Vercept后视觉能力升级</p>
-                    <div class="tool-tags">
-                        <span class="tag">多模态</span>
-                        <span class="tag">编程</span>
-                    </div>
-                    <div class="tool-footer">
-                        <a href="https://claude.ai" target="_blank" class="tool-link">访问官网 →</a>
-                    </div>
-                </div>
-
-                <!-- Tool Card 3 -->
-                <div class="tool-card">
-                    <div class="tool-icon">🔍</div>
-                    <h3 class="tool-name">Gemini 3.1 Pro</h3>
-                    <p class="tool-desc">谷歌最新大模型，长文本和代码生成能力提升，静默升级中</p>
-                    <div class="tool-tags">
-                        <span class="tag">多模态</span>
-                        <span class="tag">谷歌</span>
-                    </div>
-                    <div class="tool-footer">
-                        <a href="https://gemini.google.com" target="_blank" class="tool-link">访问官网 →</a>
-                    </div>
-                </div>
-
-                <!-- Tool Card 4 -->
-                <div class="tool-card">
-                    <div class="tool-icon">📊</div>
-                    <h3 class="tool-name">Minimax Claw</h3>
-                    <p class="tool-desc">国内大模型第一梯队，与Kimi同期发布，功能对标，值得体验</p>
-                    <div class="tool-tags">
-                        <span class="tag">对话</span>
-                        <span class="tag">国产</span>
-                    </div>
-                    <div class="tool-footer">
-                        <a href="https://minimaxi.com" target="_blank" class="tool-link">访问官网 →</a>
-                    </div>
-                </div>
-
-                <!-- Tool Card 5 -->
-                <div class="tool-card">
-                    <div class="tool-icon">🎯</div>
-                    <h3 class="tool-name">Futurepedia</h3>
-                    <p class="tool-desc">全球最大AI工具目录，4000+ curated工具，发现新工具首选</p>
-                    <div class="tool-tags">
-                        <span class="tag">工具库</span>
-                        <span class="tag">发现</span>
-                    </div>
-                    <div class="tool-footer">
-                        <a href="https://futurepedia.io" target="_blank" class="tool-link">访问官网 →</a>
-                    </div>
-                </div>
-
-                <!-- Tool Card 6 -->
-                <div class="tool-card">
-                    <div class="tool-icon">📝</div>
-                    <h3 class="tool-name">Learn Prompting</h3>
-                    <p class="tool-desc">提示词工程权威教程，从入门到精通，免费学习资源</p>
-                    <div class="tool-tags">
-                        <span class="tag">教程</span>
-                        <span class="tag">免费</span>
-                    </div>
-                    <div class="tool-footer">
-                        <a href="https://learnprompting.org" target="_blank" class="tool-link">访问官网 →</a>
-                    </div>
-                </div>
+            <div class="nav-section">
+                <div class="nav-section-title">管理</div>
+                <a href="#" class="nav-item" data-page="admin">
+                    <span class="nav-icon">⚙️</span>
+                    <span>后台管理</span>
+                </a>
             </div>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <p>© 2026 AI Hub</p>
         </div>
-    </section>
+    </aside>
 
-    <!-- News Section -->
-    <section id="news" class="news">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">行业解读</h2>
-                <p class="section-subtitle">深度分析AI行业动态，洞察趋势与机会</p>
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Tools Page -->
+        <section id="tools-page" class="page active">
+            <header class="page-header">
+                <h1 class="page-title">AI 工具库</h1>
+                <p class="page-subtitle">精选实用 AI 工具，按类别和行业分类</p>
+            </header>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <div class="tab-group">
+                    <span class="tab-label">按类型</span>
+                    <button class="tab-btn active" data-category="all">全部</button>
+                    <button class="tab-btn" data-category="platform">通用平台</button>
+                    <button class="tab-btn" data-category="video">视频 AI</button>
+                    <button class="tab-btn" data-category="image">图片 AI</button>
+                    <button class="tab-btn" data-category="text">文本 AI</button>
+                    <button class="tab-btn" data-category="audio">音频 AI</button>
+                </div>
+                <div class="tab-group">
+                    <span class="tab-label">按行业</span>
+                    <button class="tab-btn" data-category="industry-design">设计</button>
+                    <button class="tab-btn" data-category="industry-marketing">营销</button>
+                    <button class="tab-btn" data-category="industry-education">教育</button>
+                    <button class="tab-btn" data-category="industry-medical">医疗</button>
+                    <button class="tab-btn" data-category="industry-finance">金融</button>
+                    <button class="tab-btn" data-category="industry-law">法律</button>
+                    <button class="tab-btn" data-category="industry-media">媒体</button>
+                    <button class="tab-btn" data-category="industry-ecommerce">电商</button>
+                    <button class="tab-btn" data-category="industry-game">游戏</button>
+                    <button class="tab-btn" data-category="industry-code">编程</button>
+                </div>
             </div>
+            
+            <!-- Tools Grid -->
+            <div class="tools-grid" id="tools-container">
+                <!-- Tools will be loaded dynamically -->
+            </div>
+        </section>
 
-            <div class="news-list">
-                <!-- News Item 1 -->
-                <article class="news-card featured">
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date">2026.03.04</span>
-                            <span class="news-tag">行业周报</span>
+        <!-- News Page -->
+        <section id="news-page" class="page">
+            <header class="page-header">
+                <h1 class="page-title">AI 快讯</h1>
+                <p class="page-subtitle">追踪 AI 行业最新动态</p>
+            </header>
+            
+            <!-- Timeline -->
+            <div class="timeline" id="news-container">
+                <!-- News items will be loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- News Detail Page -->
+        <section id="news-detail-page" class="page">
+            <button class="back-btn" onclick="showPage('news')">← 返回快讯列表</button>
+            <article class="news-article" id="news-article">
+                <!-- Article content will be loaded dynamically -->
+            </article>
+        </section>
+
+        <!-- Admin Page -->
+        <section id="admin-page" class="page">
+            <header class="page-header">
+                <h1 class="page-title">后台管理</h1>
+                <p class="page-subtitle">编辑和管理网站内容</p>
+            </header>
+            
+            <div class="admin-tabs">
+                <button class="admin-tab-btn active" data-admin-tab="tools">管理工具</button>
+                <button class="admin-tab-btn" data-admin-tab="news">管理快讯</button>
+                <button class="admin-tab-btn" data-admin-tab="categories">管理分类</button>
+            </div>
+            
+            <!-- Admin Tools Panel -->
+            <div class="admin-panel active" id="admin-tools-panel">
+                <div class="admin-header">
+                    <h3>AI 工具管理</h3>
+                    <button class="btn btn-primary" onclick="openToolModal()">+ 添加工具</button>
+                </div>
+                <div class="admin-list" id="admin-tools-list">
+                    <!-- Tool list items -->
+                </div>
+            </div>
+            
+            <!-- Admin News Panel -->
+            <div class="admin-panel" id="admin-news-panel">
+                <div class="admin-header">
+                    <h3>AI 快讯管理</h3>
+                    <button class="btn btn-primary" onclick="openNewsModal()">+ 添加快讯</button>
+                </div>
+                <div class="admin-list" id="admin-news-list">
+                    <!-- News list items -->
+                </div>
+            </div>
+            
+            <!-- Admin Categories Panel -->
+            <div class="admin-panel" id="admin-categories-panel">
+                <div class="admin-header">
+                    <h3>分类管理</h3>
+                </div>
+                <div class="categories-editor">
+                    <h4>工具类型分类</h4>
+                    <div id="type-categories-list"></div>
+                    
+                    <h4>行业分类</h4>
+                    <div id="industry-categories-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Tool Modal -->
+    <div class="modal" id="tool-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="tool-modal-title">添加工具</h2>
+                <button class="modal-close" onclick="closeToolModal()">×</button>
+            </div>
+            <form id="tool-form" class="modal-form">
+                <input type="hidden" id="tool-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tool-name">工具名称 *</label>
+                        <input type="text" id="tool-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tool-url">官网链接 *</label>
+                        <input type="url" id="tool-url" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tool-icon">图标 Emoji</label>
+                        <input type="text" id="tool-icon" placeholder="🤖">
+                    </div>
+                    <div class="form-group">
+                        <label for="tool-badge">徽章文本</label>
+                        <input type="text" id="tool-badge" placeholder="热门/免费/新品">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tool-desc">简短描述 *</label>
+                    <textarea id="tool-desc" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tool-content">详细介绍</label>
+                    <textarea id="tool-content" rows="5"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>类型分类 *</label>
+                        <div class="checkbox-group" id="tool-type-categories">
+                            <label><input type="checkbox" name="type" value="platform"> 通用平台</label>
+                            <label><input type="checkbox" name="type" value="video"> 视频 AI</label>
+                            <label><input type="checkbox" name="type" value="image"> 图片 AI</label>
+                            <label><input type="checkbox" name="type" value="text"> 文本 AI</label>
+                            <label><input type="checkbox" name="type" value="audio"> 音频 AI</label>
                         </div>
-                        <h3 class="news-title">大厂集体动作背后的3个信号</h3>
-                        <p class="news-excerpt">
-                            Kimi与Minimax同期发布Claw产品，OpenAI牵手五角大楼，Anthropic收购视觉AI公司，
-                            谷歌Gemini静默升级...这周AI圈的大事，我们帮你解读背后的逻辑。
-                        </p>
-                        <div class="news-highlights">
-                            <h4>核心观点</h4>
-                            <ul>
-                                <li>竞争维度从参数转向场景和生态</li>
-                                <li>国内厂商技术差距在缩小，商业化仍是短板</li>
-                                <li>视觉AI是下一个爆发赛道，提前布局相关技能</li>
-                            </ul>
+                    </div>
+                    <div class="form-group">
+                        <label>行业分类</label>
+                        <div class="checkbox-group" id="tool-industry-categories">
+                            <label><input type="checkbox" name="industry" value="design"> 设计</label>
+                            <label><input type="checkbox" name="industry" value="marketing"> 营销</label>
+                            <label><input type="checkbox" name="industry" value="education"> 教育</label>
+                            <label><input type="checkbox" name="industry" value="medical"> 医疗</label>
+                            <label><input type="checkbox" name="industry" value="finance"> 金融</label>
+                            <label><input type="checkbox" name="industry" value="law"> 法律</label>
+                            <label><input type="checkbox" name="industry" value="media"> 媒体</label>
+                            <label><input type="checkbox" name="industry" value="ecommerce"> 电商</label>
+                            <label><input type="checkbox" name="industry" value="game"> 游戏</label>
+                            <label><input type="checkbox" name="industry" value="code"> 编程</label>
                         </div>
-                        <a href="#read-more" class="news-link">阅读完整解读 →</a>
-                    </div>
-                </article>
-
-                <!-- News Item 2 -->
-                <article class="news-card">
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date">Coming Soon</span>
-                            <span class="news-tag">工具测评</span>
-                        </div>
-                        <h3 class="news-title">Kimi vs Minimax：深度对比测评</h3>
-                        <p class="news-excerpt">
-                            响应速度、长文本处理、代码能力、多模态表现...全方位对比两款国产大模型，
-                            帮你选出最适合的工具。
-                        </p>
-                        <a href="#read-more" class="news-link">敬请期待 →</a>
-                    </div>
-                </article>
-
-                <!-- News Item 3 -->
-                <article class="news-card">
-                    <div class="news-content">
-                        <div class="news-meta">
-                            <span class="news-date">Coming Soon</span>
-                            <span class="news-tag">趋势分析</span>
-                        </div>
-                        <h3 class="news-title">视觉AI工具横评：设计/运营必备</h3>
-                        <p class="news-excerpt">
-                            Anthropic收购Vercept后，视觉AI赛道迎来新变化。
-                            盘点当前最好用的视觉AI工具，解放你的重复劳动。
-                        </p>
-                        <a href="#read-more" class="news-link">敬请期待 →</a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter">
-        <div class="container">
-            <div class="newsletter-content">
-                <h2>订阅周报</h2>
-                <p>每周三更新，精选AI工具 + 深度行业解读，直接发送到你的邮箱</p>
-                <form class="newsletter-form" id="newsletter-form">
-                    <input type="email" placeholder="你的邮箱地址" required class="newsletter-input">
-                    <button type="submit" class="btn btn-primary">订阅</button>
-                </form>
-                <p class="newsletter-note">无垃圾邮件，随时可取消订阅</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">关于 AI Hub</h2>
-            </div>
-            <div class="about-content">
-                <p>
-                    AI Hub 是一个专注于AI工具推荐与行业解读的独立平台。
-                    我们相信，AI技术应该被更多人理解和使用，而不是停留在新闻标题里。
-                </p>
-                <p>
-                    每周我们会从机器之心、量子位、Futurepedia等专业渠道筛选最有价值的AI动态，
-                    加上我们的实测和解读，帮你节省筛选信息的时间。
-                </p>
-                <div class="about-stats">
-                    <div class="about-stat">
-                        <span class="stat-num">100%</span>
-                        <span class="stat-desc">亲测推荐</span>
-                    </div>
-                    <div class="about-stat">
-                        <span class="stat-num">0</span>
-                        <span class="stat-desc">营销内容</span>
-                    </div>
-                    <div class="about-stat">
-                        <span class="stat-num">∞</span>
-                        <span class="stat-desc">持续学习</span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="tool-tags">标签（逗号分隔）</label>
+                    <input type="text" id="tool-tags" placeholder="国产，免费，长文本">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeToolModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- News Modal -->
+    <div class="modal" id="news-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="news-modal-title">添加快讯</h2>
+                <button class="modal-close" onclick="closeNewsModal()">×</button>
+            </div>
+            <form id="news-form" class="modal-form">
+                <input type="hidden" id="news-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="news-title">标题 *</label>
+                        <input type="text" id="news-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="news-date">日期 *</label>
+                        <input type="date" id="news-date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="news-tag">标签</label>
+                    <input type="text" id="news-tag" placeholder="行业周报/工具测评/趋势分析">
+                </div>
+                <div class="form-group">
+                    <label for="news-excerpt">摘要 *</label>
+                    <textarea id="news-excerpt" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-content">正文内容 (支持 Markdown) *</label>
+                    <textarea id="news-content" rows="15" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-highlights">核心观点（每行一条）</label>
+                    <textarea id="news-highlights" rows="5" placeholder="每行一个观点"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeNewsModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Link Confirmation Modal -->
+    <div class="modal" id="confirm-modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>即将离开本站</h2>
+                <button class="modal-close" onclick="closeConfirmModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <p>您即将访问外部网站：</p>
+                <p class="external-url" id="external-url"></p>
+                <p class="confirm-notice">请确保网站安全可靠</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeConfirmModal()">取消</button>
+                <button class="btn btn-primary" id="confirm-visit">继续访问</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo">AI</span>
-                    <span class="brand-name">Hub</span>
-                </div>
-                <p class="footer-text">
-                    © 2026 AI Hub. 记录AI行业的发展，帮你省点筛选信息的时间。
-                </p>
-                <div class="footer-links">
-                    <a href="#">小红书</a>
-                    <a href="#">微信公众号</a>
-                    <a href="#">联系我们</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
