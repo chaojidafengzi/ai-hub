@@ -30,13 +30,9 @@
                     <span class="nav-icon">📰</span>
                     <span>AI 快讯</span>
                 </a>
-            </div>
-            
-            <div class="nav-section">
-                <div class="nav-section-title">其他</div>
-                <a href="admin.html" target="_blank" class="nav-item">
-                    <span class="nav-icon">🔐</span>
-                    <span>后台管理</span>
+                <a href="#" class="nav-item" data-page="tutorials">
+                    <span class="nav-icon">📚</span>
+                    <span>AI 实用教程</span>
                 </a>
             </div>
         </nav>
@@ -104,6 +100,37 @@
         <section id="news-detail-page" class="page">
             <button class="back-btn" onclick="showPage('news')">← 返回快讯列表</button>
             <article class="news-article" id="news-article">
+                <!-- Article content will be loaded dynamically -->
+            </article>
+        </section>
+
+        <!-- Tutorials Page -->
+        <section id="tutorials-page" class="page">
+            <header class="page-header">
+                <h1 class="page-title">AI 实用教程</h1>
+                <p class="page-subtitle">手把手教你使用主流 AI 工具</p>
+            </header>
+            
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <div class="tab-group">
+                    <button class="tab-btn active" data-category="all">全部</button>
+                    <button class="tab-btn" data-category="login">登录注册</button>
+                    <button class="tab-btn" data-category="usage">使用技巧</button>
+                    <button class="tab-btn" data-category="advanced">进阶教程</button>
+                </div>
+            </div>
+            
+            <!-- Tutorials Grid -->
+            <div class="tutorials-grid" id="tutorials-container">
+                <!-- Tutorials will be loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Tutorial Detail Page -->
+        <section id="tutorial-detail-page" class="page">
+            <button class="back-btn" onclick="showPage('tutorials')">← 返回教程列表</button>
+            <article class="tutorial-article" id="tutorial-article">
                 <!-- Article content will be loaded dynamically -->
             </article>
         </section>

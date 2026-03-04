@@ -667,6 +667,152 @@ const initialTools = [
     }
 ];
 
+// Initial Tutorials Data
+const initialTutorials = [
+    {
+        id: 'tutorial-1',
+        title: '国外 AI 登录方法全攻略',
+        category: 'login',
+        icon: '🔐',
+        badge: '新手必看',
+        excerpt: '详细讲解如何注册和登录 ChatGPT、Claude、Midjourney 等国外主流 AI 工具，包含网络准备、邮箱选择、手机号验证等完整流程。',
+        content: `## 前言
+
+很多优质的 AI 工具都需要国外账号才能使用，本教程将手把手教你如何完成注册和登录。
+
+## 一、准备工作
+
+### 1. 网络环境
+- 需要准备稳定的网络工具
+- 建议选择延迟较低的节点（新加坡、日本、美国西海岸）
+- 测试访问速度：打开 chat.openai.com 看是否能正常加载
+
+### 2. 邮箱准备
+**推荐使用：**
+- Gmail（首选，兼容性最好）
+- Outlook（微软邮箱，稳定可靠）
+- ProtonMail（隐私保护好）
+
+**不推荐：**
+- 国内邮箱（QQ、163 等可能收不到验证邮件）
+
+### 3. 手机号
+部分平台需要手机验证：
+- Google Voice（推荐）
+- 国外实体卡
+- 接码平台（临时使用）
+
+---
+
+## 二、ChatGPT 注册流程
+
+### 步骤 1：访问官网
+打开 https://chat.openai.com
+
+### 步骤 2：点击注册
+点击 "Sign up" 按钮
+
+### 步骤 3：选择注册方式
+- 邮箱注册（推荐）
+- Google 账号登录
+- Microsoft 账号登录
+
+### 步骤 4：验证邮箱
+输入邮箱地址，查收验证邮件，点击验证链接
+
+### 步骤 5：设置密码
+密码要求：
+- 至少 8 位字符
+- 包含大小写字母
+- 包含数字或特殊字符
+
+### 步骤 6：手机验证（如需要）
+输入手机号，接收短信验证码
+
+### 步骤 7：完成注册
+填写基本信息，开始使用
+
+---
+
+## 三、Claude 注册流程
+
+### 步骤 1：访问官网
+打开 https://claude.ai
+
+### 步骤 2：注册账号
+目前支持：
+- Google 账号登录（推荐）
+- 邮箱注册
+
+### 步骤 3：填写信息
+- 姓名
+- 公司名称（可选）
+- 使用目的
+
+### 步骤 4：验证通过
+审核通过后即可使用（可能需要等待）
+
+---
+
+## 四、Midjourney 注册流程
+
+### 步骤 1：准备 Discord 账号
+Midjourney 基于 Discord 运行，需要先注册 Discord
+
+### 步骤 2：加入 Midjourney
+1. 访问 https://midjourney.com
+2. 点击 "Join the Beta"
+3. 授权 Discord 账号
+
+### 步骤 3：订阅付费
+Midjourney 需要付费订阅：
+- Basic: $10/月
+- Standard: $30/月
+- Pro: $60/月
+
+### 步骤 4：开始使用
+在 Discord 的 Midjourney 频道使用 /imagine 命令生成图片
+
+---
+
+## 五、常见问题
+
+### Q1: 收不到验证邮件怎么办？
+- 检查垃圾邮件箱
+- 等待 5-10 分钟
+- 尝试重新发送
+- 更换邮箱重试
+
+### Q2: 提示"账号异常"怎么办？
+- 清除浏览器缓存
+- 更换网络节点
+- 使用无痕模式
+- 等待 24 小时后重试
+
+### Q3: 需要付费吗？
+- ChatGPT：有免费版，Plus 版$20/月
+- Claude：有免费额度，Pro 版$20/月
+- Midjourney：仅付费
+
+---
+
+## 六、安全提示
+
+1. **不要共享账号**：可能导致封号
+2. **定期修改密码**：保障账号安全
+3. **开启双重验证**：重要账号建议开启
+4. **注意钓鱼网站**：仔细核对网址`,
+        readTime: '10 分钟',
+        tips: [
+            '建议使用 Chrome 或 Edge 浏览器',
+            '注册时保持网络稳定，不要频繁切换节点',
+            '保存好账号信息，建议使用密码管理器',
+            '部分平台有免费额度，先用免费版体验'
+        ],
+        createdAt: '2026-03-05'
+    }
+];
+
 // Initial News Data
 const initialNews = [
     {
@@ -904,6 +1050,15 @@ function saveNews(news) {
     return saveData('aiHubNews', news);
 }
 
+// Tutorials Data
+function getTutorials() {
+    return loadData('aiHubTutorials', initialTutorials);
+}
+
+function saveTutorials(tutorials) {
+    return saveData('aiHubTutorials', tutorials);
+}
+
 // CRUD Operations
 function addTool(tool) {
     const tools = getTools();
@@ -957,6 +1112,33 @@ function deleteNews(id) {
     const filtered = newsList.filter(n => n.id !== id);
     saveNews(filtered);
     return filtered.length !== newsList.length;
+}
+
+function addTutorial(tutorial) {
+    const tutorials = getTutorials();
+    tutorial.id = 'tutorial-' + Date.now();
+    tutorial.createdAt = new Date().toISOString().split('T')[0];
+    tutorials.unshift(tutorial);
+    saveTutorials(tutorials);
+    return tutorial;
+}
+
+function updateTutorial(id, updates) {
+    const tutorials = getTutorials();
+    const index = tutorials.findIndex(t => t.id === id);
+    if (index !== -1) {
+        tutorials[index] = { ...tutorials[index], ...updates };
+        saveTutorials(tutorials);
+        return tutorials[index];
+    }
+    return null;
+}
+
+function deleteTutorial(id) {
+    const tutorials = getTutorials();
+    const filtered = tutorials.filter(t => t.id !== id);
+    saveTutorials(filtered);
+    return filtered.length !== tutorials.length;
 }
 
 // Initialize on load

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hub - 教程管理后台</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-tutorials-styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <span class="logo-icon">AI</span>
+                    <span class="logo-text">Hub Tutorials Admin</span>
+                </div>
+                <p class="login-subtitle">教程管理后台</p>
+            </div>
+            
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="admin-username">用户名</label>
+                    <input type="text" id="admin-username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">密码</label>
+                    <input type="password" id="admin-password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">登录</button>
+                <p class="login-hint">默认账号：admin / admin123</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-dashboard" style="display: none;">
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">AI</span>
+                    <span class="logo-text">Hub Tutorials Admin</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="admin-user">👤 管理员</span>
+                <button class="btn btn-secondary btn-sm" onclick="logout()">退出登录</button>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <aside class="admin-sidebar">
+                <nav class="admin-nav">
+                    <a href="#" class="nav-item active" data-panel="tutorials">
+                        <span class="nav-icon">📚</span>
+                        <span>教程管理</span>
+                    </a>
+                    <a href="#" class="nav-item" data-panel="settings">
+                        <span class="nav-icon">⚙️</span>
+                        <span>系统设置</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <main class="admin-main">
+                <!-- Tutorials Panel -->
+                <section id="panel-tutorials" class="admin-panel active">
+                    <div class="panel-header">
+                        <h1>教程管理</h1>
+                        <button class="btn btn-primary" onclick="openTutorialModal()">+ 添加教程</button>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>教程</th>
+                                    <th>分类</th>
+                                    <th>阅读时长</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tutorials-table-body">
+                                <!-- Tutorial rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Settings Panel -->
+                <section id="panel-settings" class="admin-panel">
+                    <div class="panel-header">
+                        <h1>系统设置</h1>
+                    </div>
+                    
+                    <div class="settings-sections">
+                        <div class="settings-section">
+                            <h3>🔐 安全设置</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>修改管理员密码</label>
+                                    <p class="setting-desc">定期修改密码以保障账户安全</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="openPasswordModal()">修改密码</button>
+                            </div>
+                        </div>
+                        
+                        <div class="settings-section">
+                            <h3>💾 数据管理</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>导出数据备份</label>
+                                    <p class="setting-desc">将所有教程数据导出为 JSON 文件</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="exportData()">导出</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>导入数据</label>
+                                    <p class="setting-desc">从 JSON 文件恢复数据</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="document.getElementById('import-file').click()">导入</button>
+                                <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importData(event)">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Tutorial Modal -->
+    <div class="modal" id="tutorial-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="tutorial-modal-title">添加教程</h2>
+                <button class="modal-close" onclick="closeTutorialModal()">×</button>
+            </div>
+            <form id="tutorial-form" class="modal-form">
+                <input type="hidden" id="tutorial-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tutorial-title">教程标题 *</label>
+                        <input type="text" id="tutorial-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tutorial-category">分类 *</label>
+                        <select id="tutorial-category" required>
+                            <option value="login">登录注册</option>
+                            <option value="usage">使用技巧</option>
+                            <option value="advanced">进阶教程</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tutorial-icon">封面 Emoji</label>
+                        <input type="text" id="tutorial-icon" placeholder="🔐">
+                    </div>
+                    <div class="form-group">
+                        <label for="tutorial-badge">徽章文本</label>
+                        <input type="text" id="tutorial-badge" placeholder="热门/新手必看">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tutorial-excerpt">简短摘要 *</label>
+                    <textarea id="tutorial-excerpt" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tutorial-read-time">预计阅读时长</label>
+                    <input type="text" id="tutorial-read-time" placeholder="5 分钟">
+                </div>
+                <div class="form-group">
+                    <label for="tutorial-content">教程正文 (支持 Markdown) *</label>
+                    <textarea id="tutorial-content" rows="20" required></textarea>
+                    <p class="form-hint">支持 Markdown 格式：## 标题、**粗体**、- 列表、`代码` 等</p>
+                </div>
+                <div class="form-group">
+                    <label for="tutorial-tips">小贴士（每行一条）</label>
+                    <textarea id="tutorial-tips" rows="4" placeholder="每行一个小贴士"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeTutorialModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div class="modal" id="password-modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>修改密码</h2>
+                <button class="modal-close" onclick="closePasswordModal()">×</button>
+            </div>
+            <form id="password-form" class="modal-form">
+                <div class="form-group">
+                    <label for="current-password">当前密码</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">新密码</label>
+                    <input type="password" id="new-password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">确认新密码</label>
+                    <input type="password" id="confirm-password" required minlength="6">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closePasswordModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">确认修改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="data.js"></script>
+    <script src="admin-tutorials.js"></script>
+</body>
+</html>

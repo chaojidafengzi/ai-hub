@@ -901,3 +901,92 @@ timeline-tag {
 .timeline-item {
     animation: slideUp 0.4s ease forwards;
 }
+
+/* ===== Tutorials Grid ===== */
+.tutorials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+}
+
+.tutorial-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    border: 1px solid var(--color-border);
+}
+
+.tutorial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary-light);
+}
+
+.tutorial-card .tool-icon {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+}
+
+.tutorial-card .tool-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-secondary);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.tutorial-card .tool-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tutorial-card .tool-categories {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
+/* ===== Tutorial Article ===== */
+.tutorial-article {
+    background: white;
+    border-radius: var(--radius-xl);
+    padding: 48px;
+    box-shadow: var(--shadow-md);
+    max-width: 900px;
+}
+
+.tutorial-article .article-content pre {
+    background: var(--color-bg-alt);
+    padding: 16px 20px;
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin: 20px 0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9rem;
+}
+
+.tutorial-article .article-content code {
+    background: var(--color-bg-alt);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9em;
+}
+
+.tutorial-article .article-content a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.tutorial-article .article-content a:hover {
+    text-decoration: underline;
+}
