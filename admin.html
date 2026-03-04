@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hub - 后台管理</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin-styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">
+                    <span class="logo-icon">AI</span>
+                    <span class="logo-text">Hub Admin</span>
+                </div>
+                <p class="login-subtitle">后台管理系统</p>
+            </div>
+            
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="admin-username">用户名</label>
+                    <input type="text" id="admin-username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">密码</label>
+                    <input type="password" id="admin-password" required autocomplete="current-password">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="remember-me">
+                        <span>记住我（7 天）</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">登录</button>
+                <p class="login-hint">默认账号：admin / admin123</p>
+            </form>
+            
+            <div class="login-security">
+                <span class="security-badge">🔒 SSL 加密保护</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-dashboard" style="display: none;">
+        <!-- Top Bar -->
+        <header class="admin-header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">AI</span>
+                    <span class="logo-text">Hub Admin</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <span class="admin-user">👤 管理员</span>
+                <button class="btn btn-secondary btn-sm" onclick="logout()">退出登录</button>
+            </div>
+        </header>
+
+        <div class="admin-container">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar">
+                <nav class="admin-nav">
+                    <a href="#" class="nav-item active" data-panel="dashboard">
+                        <span class="nav-icon">📊</span>
+                        <span>控制台</span>
+                    </a>
+                    <a href="#" class="nav-item" data-panel="tools">
+                        <span class="nav-icon">🛠️</span>
+                        <span>工具管理</span>
+                    </a>
+                    <a href="#" class="nav-item" data-panel="news">
+                        <span class="nav-icon">📰</span>
+                        <span>快讯管理</span>
+                    </a>
+                    <a href="#" class="nav-item" data-panel="categories">
+                        <span class="nav-icon">🏷️</span>
+                        <span>分类管理</span>
+                    </a>
+                    <a href="#" class="nav-item" data-panel="settings">
+                        <span class="nav-icon">⚙️</span>
+                        <span>系统设置</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="admin-main">
+                <!-- Dashboard Panel -->
+                <section id="panel-dashboard" class="admin-panel active">
+                    <div class="panel-header">
+                        <h1>控制台</h1>
+                        <p>网站概览和快速操作</p>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🛠️</div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="stat-tools">0</span>
+                                <span class="stat-label">AI 工具</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📰</div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="stat-news">0</span>
+                                <span class="stat-label">快讯文章</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">👁️</div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="stat-views">-</span>
+                                <span class="stat-label">今日访问</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💾</div>
+                            <div class="stat-content">
+                                <span class="stat-number" id="stat-storage">0 KB</span>
+                                <span class="stat-label">存储使用</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <h3>快速操作</h3>
+                        <div class="action-grid">
+                            <button class="action-card" onclick="showPanel('tools'); openToolModal()">
+                                <span class="action-icon">➕</span>
+                                <span>添加工具</span>
+                            </button>
+                            <button class="action-card" onclick="showPanel('news'); openNewsModal()">
+                                <span class="action-icon">📝</span>
+                                <span>添加快讯</span>
+                            </button>
+                            <button class="action-card" onclick="exportData()">
+                                <span class="action-icon">📤</span>
+                                <span>导出数据</span>
+                            </button>
+                            <button class="action-card" onclick="document.getElementById('import-file').click()">
+                                <span class="action-icon">📥</span>
+                                <span>导入数据</span>
+                            </button>
+                        </div>
+                        <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importData(event)">
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>最近活动</h3>
+                        <div id="activity-log" class="activity-list">
+                            <!-- Activity items -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tools Panel -->
+                <section id="panel-tools" class="admin-panel">
+                    <div class="panel-header">
+                        <h1>工具管理</h1>
+                        <button class="btn btn-primary" onclick="openToolModal()">+ 添加工具</button>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>工具</th>
+                                    <th>分类</th>
+                                    <th>行业</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tools-table-body">
+                                <!-- Tools rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- News Panel -->
+                <section id="panel-news" class="admin-panel">
+                    <div class="panel-header">
+                        <h1>快讯管理</h1>
+                        <button class="btn btn-primary" onclick="openNewsModal()">+ 添加快讯</button>
+                    </div>
+                    
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>标题</th>
+                                    <th>标签</th>
+                                    <th>日期</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="news-table-body">
+                                <!-- News rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Categories Panel -->
+                <section id="panel-categories" class="admin-panel">
+                    <div class="panel-header">
+                        <h1>分类管理</h1>
+                    </div>
+                    
+                    <div class="categories-editor">
+                        <div class="category-section">
+                            <h3>工具类型分类</h3>
+                            <div id="type-categories-list" class="category-list"></div>
+                        </div>
+                        
+                        <div class="category-section">
+                            <h3>行业分类</h3>
+                            <div id="industry-categories-list" class="category-list"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Panel -->
+                <section id="panel-settings" class="admin-panel">
+                    <div class="panel-header">
+                        <h1>系统设置</h1>
+                    </div>
+                    
+                    <div class="settings-sections">
+                        <!-- Security Settings -->
+                        <div class="settings-section">
+                            <h3>🔐 安全设置</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>修改管理员密码</label>
+                                    <p class="setting-desc">定期修改密码以保障账户安全</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="openPasswordModal()">修改密码</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>会话超时</label>
+                                    <p class="setting-desc">无操作后自动退出登录的时间</p>
+                                </div>
+                                <select id="session-timeout" class="setting-select">
+                                    <option value="30">30 分钟</option>
+                                    <option value="60" selected>1 小时</option>
+                                    <option value="120">2 小时</option>
+                                    <option value="480">8 小时</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Data Settings -->
+                        <div class="settings-section">
+                            <h3>💾 数据管理</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>导出数据备份</label>
+                                    <p class="setting-desc">将所有数据导出为 JSON 文件</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="exportData()">导出</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>导入数据</label>
+                                    <p class="setting-desc">从 JSON 文件恢复数据</p>
+                                </div>
+                                <button class="btn btn-secondary" onclick="document.getElementById('import-file-2').click()">导入</button>
+                                <input type="file" id="import-file-2" accept=".json" style="display: none;" onchange="importData(event)">
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>重置所有数据</label>
+                                    <p class="setting-desc">清除所有数据并恢复默认值（不可恢复）</p>
+                                </div>
+                                <button class="btn btn-danger" onclick="confirmReset()">重置</button>
+                            </div>
+                        </div>
+
+                        <!-- Site Settings -->
+                        <div class="settings-section">
+                            <h3>🌐 网站设置</h3>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>网站标题</label>
+                                    <p class="setting-desc">浏览器标签页显示的标题</p>
+                                </div>
+                                <input type="text" id="site-title" class="setting-input" value="AI Hub | AI 工具推荐与行业快讯">
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <label>前台访问地址</label>
+                                    <p class="setting-desc">后台管理页面的跳转链接</p>
+                                </div>
+                                <a href="index.html" target="_blank" class="btn btn-primary">访问前台 →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="settings-save">
+                        <button class="btn btn-primary" onclick="saveSettings()">保存设置</button>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Tool Modal -->
+    <div class="modal" id="tool-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="tool-modal-title">添加工具</h2>
+                <button class="modal-close" onclick="closeToolModal()">×</button>
+            </div>
+            <form id="tool-form" class="modal-form">
+                <input type="hidden" id="tool-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tool-name">工具名称 *</label>
+                        <input type="text" id="tool-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="tool-url">官网链接 *</label>
+                        <input type="url" id="tool-url" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tool-icon">图标 Emoji</label>
+                        <input type="text" id="tool-icon" placeholder="🤖">
+                    </div>
+                    <div class="form-group">
+                        <label for="tool-badge">徽章文本</label>
+                        <input type="text" id="tool-badge" placeholder="热门/免费/新品">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tool-desc">简短描述 *</label>
+                    <textarea id="tool-desc" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tool-content">详细介绍</label>
+                    <textarea id="tool-content" rows="5"></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>类型分类 *</label>
+                        <div class="checkbox-group" id="tool-type-categories">
+                            <label><input type="checkbox" name="type" value="platform"> 通用平台</label>
+                            <label><input type="checkbox" name="type" value="video"> 视频 AI</label>
+                            <label><input type="checkbox" name="type" value="image"> 图片 AI</label>
+                            <label><input type="checkbox" name="type" value="text"> 文本 AI</label>
+                            <label><input type="checkbox" name="type" value="audio"> 音频 AI</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>行业分类</label>
+                        <div class="checkbox-group" id="tool-industry-categories">
+                            <label><input type="checkbox" name="industry" value="design"> 设计</label>
+                            <label><input type="checkbox" name="industry" value="marketing"> 营销</label>
+                            <label><input type="checkbox" name="industry" value="education"> 教育</label>
+                            <label><input type="checkbox" name="industry" value="medical"> 医疗</label>
+                            <label><input type="checkbox" name="industry" value="finance"> 金融</label>
+                            <label><input type="checkbox" name="industry" value="law"> 法律</label>
+                            <label><input type="checkbox" name="industry" value="media"> 媒体</label>
+                            <label><input type="checkbox" name="industry" value="ecommerce"> 电商</label>
+                            <label><input type="checkbox" name="industry" value="game"> 游戏</label>
+                            <label><input type="checkbox" name="industry" value="code"> 编程</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tool-tags">标签（逗号分隔）</label>
+                    <input type="text" id="tool-tags" placeholder="国产，免费，长文本">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeToolModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- News Modal -->
+    <div class="modal" id="news-modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2 id="news-modal-title">添加快讯</h2>
+                <button class="modal-close" onclick="closeNewsModal()">×</button>
+            </div>
+            <form id="news-form" class="modal-form">
+                <input type="hidden" id="news-id">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="news-title">标题 *</label>
+                        <input type="text" id="news-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="news-date">日期 *</label>
+                        <input type="date" id="news-date" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="news-tag">标签</label>
+                    <input type="text" id="news-tag" placeholder="行业周报/工具测评/趋势分析">
+                </div>
+                <div class="form-group">
+                    <label for="news-excerpt">摘要 *</label>
+                    <textarea id="news-excerpt" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-content">正文内容 (支持 Markdown) *</label>
+                    <textarea id="news-content" rows="15" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="news-highlights">核心观点（每行一条）</label>
+                    <textarea id="news-highlights" rows="5" placeholder="每行一个观点"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeNewsModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div class="modal" id="password-modal">
+        <div class="modal-content modal-small">
+            <div class="modal-header">
+                <h2>修改密码</h2>
+                <button class="modal-close" onclick="closePasswordModal()">×</button>
+            </div>
+            <form id="password-form" class="modal-form">
+                <div class="form-group">
+                    <label for="current-password">当前密码</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">新密码</label>
+                    <input type="password" id="new-password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">确认新密码</label>
+                    <input type="password" id="confirm-password" required minlength="6">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closePasswordModal()">取消</button>
+                    <button type="submit" class="btn btn-primary">确认修改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

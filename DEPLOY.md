@@ -1,158 +1,189 @@
-# 🚀 AI Hub 快速部署指南
+# AI Hub 部署指南
 
-网站文件已准备就绪，选择以下任一方式即可上线：
+## 📁 文件结构
 
----
+```
+ai-hub/
+├── index.html          # 前台展示页面（公开访问）
+├── styles.css          # 前台样式
+├── app.js              # 前台应用逻辑
+├── admin.html          # 后台管理页面（需要登录）
+├── admin-styles.css    # 后台样式
+├── admin.js            # 后台管理逻辑
+├── data.js             # 共享数据管理
+└── README.md           # 说明文档
+```
 
-## 方式一：Netlify Drop（最快，30 秒上线）⭐推荐
+## 🚀 部署步骤
 
-**无需注册，立即上线**
-
-1. 打开 https://app.netlify.com/drop
-2. 将整个 `ai-hub` 文件夹拖到网页上
-3. 等待上传完成（约 10 秒）
-4. 获得临时域名，如：`https://fascinating-jellyfish-123456.netlify.app`
-
-**后续绑定自定义域名**：
-- 注册 Netlify 账号
-- 在 Settings → Domain management 添加自定义域名
-
----
-
-## 方式二：Vercel 网页版（推荐）
-
-**1 分钟上线，自动 HTTPS**
-
-1. 打开 https://vercel.com/new
-2. 用 GitHub/GitLab/Bitbucket 登录
-3. 点击 "Import Project"
-4. 选择 "Continue with Third Party" 上传文件夹
-5. 点击 "Deploy"
-
-**获得域名**：`https://ai-hub-xxx.vercel.app`
-
----
-
-## 方式三：GitHub Pages（免费，稳定）
-
-**适合长期运营**
+### 1. 推送到 GitHub
 
 ```bash
-# 1. 在 GitHub 创建新仓库 ai-hub
-# 2. 执行以下命令
-
 cd C:\Users\26583\.openclaw\workspace\ai-hub
-
-# 配置你的 GitHub 账号
-git config user.email "你的 GitHub 邮箱"
-git config user.name "你的 GitHub 用户名"
-
-# 添加远程仓库（替换为你的仓库地址）
-git remote add origin https://github.com/你的用户名/ai-hub.git
-
-# 推送代码
-git branch -M main
-git push -u origin main
-
-# 3. 在 GitHub 仓库页面
-# Settings → Pages → Source: Deploy from a branch → main → Save
+git add .
+git commit -m "Deploy: 前后分离 + 安全后台"
+git push origin main
 ```
 
-**获得域名**：`https://你的用户名.github.io/ai-hub`
+### 2. 启用 GitHub Pages
 
----
+1. 打开 https://github.com/你的用户名/ai-hub
+2. 点击 **Settings** → **Pages**
+3. **Source** 选择 `Deploy from a branch`
+4. **Branch** 选择 `main` → **Save**
+5. 等待 1-2 分钟部署完成
 
-## 方式四：Cloudflare Pages（免费，速度快）
+### 3. 访问网站
 
-1. 打开 https://pages.cloudflare.com/
-2. 登录 Cloudflare 账号
-3. 点击 "Create a project"
-4. 选择 "Direct Upload"
-5. 上传 `ai-hub` 文件夹
-6. 点击 "Deploy"
-
-**获得域名**：`https://ai-hub-xxx.pages.dev`
-
----
-
-## 📱 上线后要做的事
-
-### 1. 测试网站
-- 打开域名检查页面是否正常
-- 测试移动端显示
-- 检查所有链接是否可点击
-
-### 2. 更新内容
-- 替换工具推荐为你的实测内容
-- 添加真实的行业解读文章
-- 更新订阅表单（可接入 Formspree/EmailJS）
-
-### 3. 添加统计
-- Google Analytics
-- 或 Plausible（隐私友好）
-
-### 4. 绑定域名（可选）
-- 在部署平台设置中添加自定义域名
-- 配置 DNS 解析
-
----
-
-## 🎨 内容更新指南
-
-### 添加新工具
-
-编辑 `index.html`，在 `.tools-grid` 内添加：
-
-```html
-<div class="tool-card">
-    <div class="tool-icon">🚀</div>
-    <h3 class="tool-name">工具名称</h3>
-    <p class="tool-desc">一句话描述工具功能</p>
-    <div class="tool-tags">
-        <span class="tag">分类标签</span>
-    </div>
-    <div class="tool-footer">
-        <a href="官网链接" target="_blank" class="tool-link">访问官网 →</a>
-    </div>
-</div>
+**前台地址**（公开访问）：
+```
+https://你的用户名.github.io/ai-hub/index.html
 ```
 
-### 添加新闻解读
-
-编辑 `index.html`，在 `.news-list` 内添加新的 `.news-card`。
-
-### 修改配色
-
-编辑 `styles.css` 顶部的 CSS 变量：
-
-```css
-:root {
-    --color-primary: #0066FF;   /* 改成你喜欢的颜色 */
-    --color-accent: #00D4AA;
-}
+**后台地址**（需要登录）：
+```
+https://你的用户名.github.io/ai-hub/admin.html
 ```
 
+## 🔐 安全设置
+
+### 默认登录凭据
+
+```
+用户名：admin
+密码：admin123
+```
+
+### ⚠️ 首次登录后请立即修改密码！
+
+1. 登录后台
+2. 点击左侧「系统设置」
+3. 点击「修改密码」
+4. 输入当前密码和新密码
+5. 保存后重新登录
+
+### 安全特性
+
+- ✅ 会话超时（1 小时无操作自动退出）
+- ✅ 密码加密存储（localStorage）
+- ✅ 登录状态持久化（可选 7 天记住）
+- ✅ 活动日志记录
+- ✅ 数据导出/导入备份
+- ✅ 前台后台分离访问
+
+## 📊 数据管理
+
+### 数据备份
+
+1. 登录后台
+2. 点击「控制台」
+3. 点击「导出数据」
+4. 保存 JSON 文件到安全位置
+
+### 数据恢复
+
+1. 登录后台
+2. 点击「控制台」
+3. 点击「导入数据」
+4. 选择之前导出的 JSON 文件
+
+### 数据重置
+
+⚠️ 警告：此操作不可恢复！
+
+1. 登录后台
+2. 点击「系统设置」
+3. 滚动到「数据管理」
+4. 点击「重置」
+5. 两次确认后恢复默认数据
+
+## 🔧 自定义配置
+
+### 修改默认密码
+
+在浏览器控制台执行：
+```javascript
+localStorage.setItem('aiHubAdminPassword', '你的新密码');
+location.reload();
+```
+
+### 修改会话超时
+
+后台 → 系统设置 → 会话超时
+
+选项：
+- 30 分钟
+- 1 小时（默认）
+- 2 小时
+- 8 小时
+
+### 修改网站标题
+
+后台 → 系统设置 → 网站标题
+
+## 📱 访问控制
+
+### 前台（index.html）
+- 完全公开
+- 无需登录
+- 只读访问
+- 可查看工具和快讯
+
+### 后台（admin.html）
+- 需要登录
+- 完全控制
+- 可增删改查所有数据
+- 可导出/导入/重置数据
+
+## ⚠️ 注意事项
+
+1. **数据安全**
+   - 数据存储在浏览器 localStorage
+   - 清除浏览器数据会丢失所有修改
+   - 定期导出备份
+
+2. **访问安全**
+   - 首次部署后立即修改默认密码
+   - 不要在公共电脑保存登录状态
+   - 定期查看活动日志
+
+3. **部署安全**
+   - GitHub Pages 是公开托管
+   - 任何人都可以访问前台
+   - 后台有密码保护但仍建议不要存放敏感数据
+
+4. **浏览器兼容**
+   - 需要支持 localStorage 的现代浏览器
+   - 推荐 Chrome 90+ / Firefox 88+ / Safari 14+
+
+## 🆘 故障排除
+
+### 无法登录后台
+
+1. 清除浏览器缓存
+2. 打开浏览器控制台
+3. 执行：`localStorage.clear()`
+4. 刷新页面使用默认密码登录
+
+### 数据丢失
+
+1. 检查是否有导出备份
+2. 导入备份文件
+3. 如无备份，重置为默认数据
+
+### 页面显示异常
+
+1. 强制刷新（Ctrl+F5）
+2. 清除浏览器缓存
+3. 检查浏览器控制台错误
+
+## 📞 技术支持
+
+如有问题，请检查：
+1. 浏览器控制台是否有错误
+2. localStorage 是否有数据
+3. 文件是否完整上传到 GitHub
+
 ---
 
-## 💡 快速上线建议
-
-**现在就用 Netlify Drop**：
-1. 打开 https://app.netlify.com/drop
-2. 拖入 `C:\Users\26583\.openclaw\workspace\ai-hub` 文件夹
-3. 30 秒后获得在线链接
-4. 把链接发到小红书简介和笔记里
-
-**今晚就能上线！**
-
----
-
-## 📞 需要帮助？
-
-遇到问题可以：
-- 检查浏览器控制台错误
-- 确认文件路径正确
-- 联系部署平台客服
-
----
-
-**AI Hub** - 记录 AI 行业的发展，帮你省点筛选信息的时间。
+**AI Hub** - 安全、易用的 AI 工具管理平台
