@@ -5,12 +5,12 @@ const initialTools = [
     // ===== 通用平台 (1-10) =====
     {
         id: 'tool-1',
-        name: 'Kimi',
+        name: 'zpy和djc',
         url: 'https://kimi.moonshot.cn',
         icon: '🤖',
         badge: '热门',
-        desc: '月之暗面 AI 助手，长文本处理能力出色，支持 20 万字上下文',
-        content: 'Kimi 是月之暗面推出的 AI 助手产品，在长文本处理方面表现优异。支持上传 PDF、Word 等文档进行智能分析，可以快速提取关键信息、生成摘要。适合需要处理大量文档的职场人士和研究者。',
+        desc: '最好的朋友',
+        content: '一直在一起',
         type: ['platform', 'text'],
         industry: ['education', 'media', 'code'],
         tags: ['国产', '长文本', '文档分析'],
