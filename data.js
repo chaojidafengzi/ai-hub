@@ -5,12 +5,12 @@ const initialTools = [
     // ===== 通用平台 (1-10) =====
     {
         id: 'tool-1',
-        name: 'zpy和djc',
+        name: 'zpw天下第一美',
         url: 'https://kimi.moonshot.cn',
         icon: '🤖',
         badge: '热门',
-        desc: '最好的朋友',
-        content: '一直在一起',
+        desc: '沉鱼落雁',
+        content: '闭月羞花',
         type: ['platform', 'text'],
         industry: ['education', 'media', 'code'],
         tags: ['国产', '长文本', '文档分析'],
